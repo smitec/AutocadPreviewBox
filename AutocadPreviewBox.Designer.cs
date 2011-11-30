@@ -1,6 +1,6 @@
-﻿namespace autocadhelloworld
+﻿namespace previewer
 {
-    partial class UserControl1
+    partial class PreviewBox
     {
         /// <summary> 
         /// Required designer variable.
