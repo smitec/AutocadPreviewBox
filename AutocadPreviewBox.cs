@@ -33,20 +33,22 @@ namespace previewer
         }
 
         /// <summary>
-        /// on load method (Nothing to do here at this stage)
+        /// on load method
         /// </summary>
         /// <param name="sender">sender of the request</param>
         /// <param name="e">event arguments</param>
         private void UserControl1_Load(object sender, EventArgs e)
         {
-
+            this.pictureBox1.Width = this.Width - 3;
+            this.pictureBox1.Height = this.Height - 3;
         }
 
         /// <summary>
         /// Load a dwg preview into the control.
         /// </summary>
         /// <param name="filename">Path to the .dwg file</param>
-        public void load_file_preview(string filename)
+        /// <param name="resize">Should the box resize to the new image</param>
+        public void load_file_preview(string filename, bool resize = false)
         {
             //create a new database instance and load the dwg file into it.
             Database dbb = new Database(false, true);
@@ -59,8 +61,19 @@ namespace previewer
             //place the picture in the preview box and resize
             this.pictureBox1.BackColor = System.Drawing.Color.LightSlateGray;
             this.pictureBox1.Image = preview;
-            this.pictureBox1.Width = preview.Width;
-            this.pictureBox1.Height = preview.Height;
+            
+            //resize the picture box (not the pallete) if it was asked for
+            if (resize == true)
+            {
+                this.pictureBox1.Width = preview.Width;
+                this.pictureBox1.Height = preview.Height;
+            }
+        }
+
+        private void PreviewBox_Resize(object sender, EventArgs e)
+        {
+            this.pictureBox1.Width = this.Width - 3;
+            this.pictureBox1.Height = this.Height - 3;
         }
     }
 }

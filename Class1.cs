@@ -47,6 +47,8 @@ namespace previewer
                 myPreviewBox = new PreviewBox();
                 myPal.Add("Palette1", myPreviewBox);
             }
+
+            //disply the palette
             myPal.Visible = true;
         }
 
@@ -63,6 +65,8 @@ namespace previewer
             Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;
             PromptOpenFileOptions op = new PromptOpenFileOptions("Select a File to Preview.");
             PromptFileNameResult fn = ed.GetFileNameForOpen(op);
+            
+            //did we get a file okay?
             if (fn.Status == PromptStatus.OK)
             {
                 //use the loaded dwg file to update the preview box
